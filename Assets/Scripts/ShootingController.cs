@@ -5,7 +5,10 @@ public class ShootingController : MonoBehaviour
 {
 	public GameObject ballPrefab;
 	public float ballImpulse = 10.0f;
-
+	public Vector3 heightOffset = new Vector3 (0, 0.3f, 0);
+	// so that the ball starts a little higher than the middle of the screen
+	public Vector3 verticalImpulseOffset = new Vector3 (0, 8.0f, 0);
+	// so that the ball is not launched horizontally, almost directed to the ground
 
 	// Use this for initialization
 	void Start ()
@@ -18,8 +21,8 @@ public class ShootingController : MonoBehaviour
 	{
 		Camera cam = Camera.main;
 		if (Input.GetButtonDown ("Fire1")) {
-			GameObject bullet = (GameObject)Instantiate (ballPrefab, cam.transform.position + cam.transform.forward, cam.transform.rotation);
-			bullet.GetComponent <Rigidbody> ().AddForce (cam.transform.forward * ballImpulse, ForceMode.Impulse);
+			GameObject bullet = (GameObject)Instantiate (ballPrefab, cam.transform.position + cam.transform.forward + heightOffset, cam.transform.rotation);
+			bullet.GetComponent <Rigidbody> ().AddForce ((cam.transform.forward * ballImpulse) + verticalImpulseOffset, ForceMode.Impulse);
 		}
 	}
 }
