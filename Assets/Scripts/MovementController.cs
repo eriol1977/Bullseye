@@ -10,14 +10,6 @@ public class MovementController : MonoBehaviour
 
 	float rotUpDown = 0;
 	public float upDownRange = 60.0f;
-
-	CharacterController cc;
-
-	// Use this for initialization
-	void Awake ()
-	{
-		cc = GetComponent<CharacterController> ();
-	}
 	
 	// Update is called once per frame
 	void Update ()
