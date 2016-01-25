@@ -3,16 +3,15 @@ using System.Collections;
 
 public class Target01 : MonoBehaviour
 {
-	public GameObject explosionPrefab;
+	public float explodingAngle = 90.0f;
 
-	public float lifeSpan = 3.0f;
+	public int scoreValue = 100;
 
 	private enum STATUS
 	{
 		NORMAL,
 		HIT,
-		EXPLODING,
-		EXPLODED}
+		EXPLODING}
 	;
 
 	private STATUS _status;
@@ -21,7 +20,7 @@ public class Target01 : MonoBehaviour
 		get { return _status; }
 		set {
 			_status = value;
-			if (value == STATUS.EXPLODED)
+			if (value == STATUS.EXPLODING)
 				Explode ();
 		}
 	}
@@ -37,12 +36,9 @@ public class Target01 : MonoBehaviour
 	{
 		if (Status == STATUS.HIT) {
 			float angle = Mathf.Abs (Quaternion.Angle (Quaternion.Euler (new Vector3 (0, 0, 0)), transform.rotation)); 
-			if (angle >= 90.0f)
+			if (angle >= explodingAngle) {
 				Status = STATUS.EXPLODING;
-		} else if (Status == STATUS.EXPLODING) {
-			lifeSpan -= Time.deltaTime;
-			if (lifeSpan <= 0) {
-				Status = STATUS.EXPLODED;
+				GameManager.Instance.Score += scoreValue;
 			}
 		}
 	}
@@ -55,9 +51,16 @@ public class Target01 : MonoBehaviour
 
 	private void Explode ()
 	{
-		// BUG! it seems to be related to Unity v.5.3.1
-		// http://answers.unity3d.com/questions/1114805/instantiating-prefab-gives-isfinite-error.html
-		//Instantiate (explosionPrefab, transform.position, Quaternion.identity);
-		Destroy (gameObject);
+		// hide object
+		gameObject.GetComponent<MeshRenderer> ().enabled = false;
+		// stop object movement and rotation, to avoid affecting the explosion
+		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		gameObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
+		// plays the explosion and the related sound effect
+		var exp = GetComponent<ParticleSystem> ();
+		exp.Play ();
+		gameObject.GetComponent<AudioSource> ().Play ();
+		// destroys the object
+		Destroy (gameObject, 1.2f); // this gives enough time to the sound to play
 	}
 }
