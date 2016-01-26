@@ -23,6 +23,7 @@ public class Ball : MonoBehaviour
 	void Start ()
 	{
 		throwSound.Play ();
+		GameManager.Instance.Balls--;
 	}
 	
 	// Update is called once per frame

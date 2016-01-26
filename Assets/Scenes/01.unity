@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 339823fe37aa0364e82ae2ff66ab0327,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -131,6 +132,79 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d852e566e57e5dd41b2dca75f9c28861, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &111350742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 111350743}
+  - 222: {fileID: 111350745}
+  - 114: {fileID: 111350744}
+  m_Layer: 5
+  m_Name: TxtBalls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &111350743
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111350742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2005422412}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -7}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &111350744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111350742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Balls: XX'
+--- !u!222 &111350745
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111350742}
 --- !u!1001 &395886283
 Prefab:
   m_ObjectHideFlags: 0
@@ -534,7 +608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 999999
+  m_Text: XXXXXX
 --- !u!222 &780484545
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -812,6 +886,7 @@ GameObject:
   - 4: {fileID: 1714259657}
   - 114: {fileID: 1714259658}
   - 114: {fileID: 1714259659}
+  - 114: {fileID: 1714259660}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -861,6 +936,20 @@ MonoBehaviour:
   ballImpulse: 25
   heightOffset: {x: 0, y: 0.3, z: 0}
   verticalImpulseOffset: {x: 0, y: 8, z: 0}
+--- !u!114 &1714259660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714259656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb2d9e4e5d68974db5670be25f4f23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreLabel: {fileID: 780484544}
+  levelLabel: {fileID: 901568439}
+  ballsLabel: {fileID: 111350744}
 --- !u!1 &1837905354
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +963,6 @@ GameObject:
   - 124: {fileID: 1837905356}
   - 81: {fileID: 1837905355}
   - 82: {fileID: 1837905360}
-  - 114: {fileID: 1837905361}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1025,19 +1113,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1837905361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1837905354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb2d9e4e5d68974db5670be25f4f23d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreLabel: {fileID: 780484544}
-  levelLabel: {fileID: 901568439}
 --- !u!1001 &1966449327
 Prefab:
   m_ObjectHideFlags: 0
@@ -1159,6 +1234,7 @@ RectTransform:
   m_Children:
   - {fileID: 901568438}
   - {fileID: 780484543}
+  - {fileID: 111350743}
   m_Father: {fileID: 685874622}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
