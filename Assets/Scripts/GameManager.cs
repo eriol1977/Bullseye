@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
 
 	private int score;
 
-	public Text scoreLabel;
+	public event EventHandler ScoreChanged;
 
 	public int Score {
 		get {
@@ -91,21 +92,19 @@ public class GameManager : MonoBehaviour
 		}
 		set {
 			score = value;
-			UpdateScoreLabel ();
+
+			//Fire the event - notifying all subscribers
+			if (ScoreChanged != null)
+				ScoreChanged (this, null);
 		}
 	}
-
-	private void UpdateScoreLabel ()
-	{
-		if (scoreLabel != null)
-			scoreLabel.text = Score.ToString ();
-	}
+		
 
 	// LEVEL
 
 	private int level;
 
-	public Text levelLabel;
+	//public Text levelLabel;
 
 	public int Level {
 		get {
@@ -113,21 +112,21 @@ public class GameManager : MonoBehaviour
 		}
 		set {
 			level = value;
-			UpdateLevelLabel ();
+			//UpdateLevelLabel ();
 		}
 	}
 
-	private void UpdateLevelLabel ()
-	{
-		if (levelLabel != null)
-			levelLabel.text = "Level " + level.ToString ();
-	}
+	//	private void UpdateLevelLabel ()
+	//	{
+	//		if (levelLabel != null)
+	//			levelLabel.text = "Level " + level.ToString ();
+	//	}
 
 	// BALLS
 
 	private int balls;
 
-	public Text ballsLabel;
+	//public Text ballsLabel;
 
 	public int Balls {
 		get {
@@ -135,16 +134,16 @@ public class GameManager : MonoBehaviour
 		}
 		set {
 			balls = value;
-			UpdateBallsLabel ();
+			//UpdateBallsLabel ();
 			if (balls == 0) {
 				Status = STATUS.GAMEOVER;
 			}
 		}
 	}
 
-	private void UpdateBallsLabel ()
-	{
-		if (ballsLabel != null)
-			ballsLabel.text = "Balls: " + balls.ToString ();
-	}
+	//	private void UpdateBallsLabel ()
+	//	{
+	//		if (ballsLabel != null)
+	//			ballsLabel.text = "Balls: " + balls.ToString ();
+	//	}
 }
