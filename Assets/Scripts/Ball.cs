@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Ball : MonoBehaviour
@@ -23,7 +24,6 @@ public class Ball : MonoBehaviour
 	void Start ()
 	{
 		throwSound.Play ();
-		GameManager.Instance.Balls--;
 	}
 	
 	// Update is called once per frame
@@ -31,6 +31,7 @@ public class Ball : MonoBehaviour
 	{
 		lifespan -= Time.deltaTime;
 		if (lifespan <= 0) {
+			GameObject.Find ("TransientGameControl").GetComponent<LevelControl> ().Balls--;
 			Destroy (gameObject);
 		}
 	}
@@ -39,6 +40,7 @@ public class Ball : MonoBehaviour
 	{
 		bounceSound.Play ();
 		if (other.gameObject.tag.Equals ("Target")) {
+			GameObject.Find ("TransientGameControl").GetComponent<LevelControl> ().Balls--;
 			Destroy (gameObject, 1.0f);
 		}
 	}

@@ -38,7 +38,7 @@ public class Target01 : MonoBehaviour
 			float angle = Mathf.Abs (Quaternion.Angle (Quaternion.Euler (new Vector3 (0, 0, 0)), transform.rotation)); 
 			if (angle >= explodingAngle) {
 				Status = STATUS.EXPLODING;
-				GameManager.Instance.Score += scoreValue;
+				GameObject.Find ("TransientGameControl").GetComponent<ScoreControl> ().Score += scoreValue;
 			}
 		}
 	}
