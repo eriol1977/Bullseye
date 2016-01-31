@@ -5,6 +5,8 @@ using System.Collections;
 
 public class LevelControl : MonoBehaviour
 {
+	// TODO: targets count
+
 	// LEVEL CODE
 
 	private int level;
