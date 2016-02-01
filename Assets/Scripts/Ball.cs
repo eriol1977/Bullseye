@@ -10,6 +10,9 @@ public class Ball : MonoBehaviour
 	private AudioSource throwSound;
 	private AudioSource bounceSound;
 
+	public event EventHandler BallThrown;
+	public event EventHandler BallDestroyed;
+
 	void Awake ()
 	{
 		// loads the appropriate sound effects
@@ -19,11 +22,16 @@ public class Ball : MonoBehaviour
 			else if (a.clip.name.Equals ("bounce"))
 				bounceSound = a;
 		}
+
+		// Events setup
+		BallThrown += LevelControl.Instance.OnBallThrown;
+		BallDestroyed += LevelControl.Instance.OnBallDestroyed;
 	}
 
 	void Start ()
 	{
 		throwSound.Play ();
+		BallThrown (this, null);
 	}
 	
 	// Update is called once per frame
@@ -31,7 +39,6 @@ public class Ball : MonoBehaviour
 	{
 		lifespan -= Time.deltaTime;
 		if (lifespan <= 0) {
-			GameObject.Find ("TransientGameControl").GetComponent<LevelControl> ().Balls--;
 			Destroy (gameObject);
 		}
 	}
@@ -40,8 +47,12 @@ public class Ball : MonoBehaviour
 	{
 		bounceSound.Play ();
 		if (other.gameObject.tag.Equals ("Target")) {
-			GameObject.Find ("TransientGameControl").GetComponent<LevelControl> ().Balls--;
 			Destroy (gameObject, 1.0f);
 		}
+	}
+
+	void OnDestroy ()
+	{
+		BallDestroyed (this, null);
 	}
 }

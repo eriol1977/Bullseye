@@ -42,17 +42,18 @@ public class FlowControl : MonoBehaviour
 	public void Proceed ()
 	{
 		if (Status == STATUS.PLAYING) {
-			lc = GameObject.Find ("TransientGameControl").GetComponent<LevelControl> ();
-			lc.BallsFinished += OnLevelFailed;
+			UIControl.Instance.Init ();
 
-			sc = GameObject.Find ("TransientGameControl").GetComponent<ScoreControl> ();
-
-			uic = GameObject.Find ("TransientGameControl").GetComponent<UIControl> ();
-			uic.Init (sc, lc);
-
+			LevelControl lc = LevelControl.Instance;
+			lc.BallsFinished += OnBallsFinished;
+			lc.TargetsFinished += OnTargetsFinished;
 			lc.Level = level;
-			lc.Balls = 15; // TODO lettura da XML
-			sc.Score = 0;
+
+			// TODO lettura da XML
+			lc.Balls = 15; 
+			lc.Targets = 9;
+
+			ScoreControl.Instance.Score = 0;
 		}
 	}
 
@@ -62,8 +63,15 @@ public class FlowControl : MonoBehaviour
 		Status = STATUS.PLAYING;
 	}
 
-	private void OnLevelFailed (object sender, EventArgs e)
+	private void OnBallsFinished (object sender, EventArgs e)
 	{
+		// FIXME load level failed screen
+		Status = STATUS.GAMEOVER;
+	}
+
+	private void OnTargetsFinished (object sender, EventArgs e)
+	{
+		// FIXME load level won screen
 		Status = STATUS.GAMEOVER;
 	}
 

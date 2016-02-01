@@ -5,6 +5,21 @@ using System.Collections;
 
 public class UIControl : MonoBehaviour
 {
+	// SINGLETON CODE
+
+	private static UIControl instance = null;
+
+	public static UIControl Instance {
+		get {
+			return instance;
+		}
+	}
+
+	void Awake ()
+	{
+		//Make this active and only instance
+		instance = this;
+	}
 
 	public Text scoreLabel;
 
@@ -12,18 +27,13 @@ public class UIControl : MonoBehaviour
 
 	public Text ballsLabel;
 
-	private ScoreControl sc;
+	public Text targetsLabel;
 
-	private LevelControl lc;
-
-	public void Init (ScoreControl sc, LevelControl lc)
+	public void Init ()
 	{
-		this.sc = sc;
-		this.lc = lc;
-
-		this.sc.ScoreChanged += HandleScoreChanged;
-		this.lc.LevelChanged += HandleLevelChanged;
-		this.lc.BallsChanged += HandleBallsChanged;
+		ScoreControl.Instance.ScoreChanged += HandleScoreChanged;
+		LevelControl.Instance.LevelChanged += HandleLevelChanged;
+		LevelControl.Instance.BallsChanged += HandleBallsChanged;
 	}
 
 	public void HandleScoreChanged (object sender, EventArgs e)
@@ -41,21 +51,32 @@ public class UIControl : MonoBehaviour
 		UpdateBallsLabel ();
 	}
 
+	public void HandleTargetsChanged (object sender, EventArgs e)
+	{
+		UpdateTargetsLabel ();
+	}
+
 	private void UpdateScoreLabel ()
 	{
 		if (scoreLabel != null)
-			scoreLabel.text = sc.Score.ToString ();
+			scoreLabel.text = ScoreControl.Instance.Score.ToString ();
 	}
 
 	private void UpdateLevelLabel ()
 	{
 		if (levelLabel != null)
-			levelLabel.text = "Level " + lc.Level.ToString ();
+			levelLabel.text = "Level " + LevelControl.Instance.Level.ToString ();
 	}
 
 	private void UpdateBallsLabel ()
 	{
 		if (ballsLabel != null)
-			ballsLabel.text = "Balls: " + lc.Balls.ToString ();
+			ballsLabel.text = "Balls: " + LevelControl.Instance.Balls.ToString ();
+	}
+
+	private void UpdateTargetsLabel ()
+	{
+		if (targetsLabel != null)
+			targetsLabel.text = "Targets: " + LevelControl.Instance.Targets.ToString ();
 	}
 }

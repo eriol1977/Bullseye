@@ -21,8 +21,8 @@ public class ShootingController : MonoBehaviour
 	{
 		Camera cam = Camera.main;
 		if (Input.GetButtonDown ("Fire1")) {
-			GameObject bullet = (GameObject)Instantiate (ballPrefab, cam.transform.position + cam.transform.forward + heightOffset, cam.transform.rotation);
-			bullet.GetComponent <Rigidbody> ().AddForce ((cam.transform.forward * ballImpulse) + verticalImpulseOffset, ForceMode.Impulse);
+			GameObject ball = (GameObject)Instantiate (ballPrefab, cam.transform.position + cam.transform.forward + heightOffset, cam.transform.rotation);
+			ball.GetComponent <Rigidbody> ().AddForce ((cam.transform.forward * ballImpulse) + verticalImpulseOffset, ForceMode.Impulse);
 		}
 	}
 }

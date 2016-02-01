@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Target01 : MonoBehaviour
@@ -6,6 +7,8 @@ public class Target01 : MonoBehaviour
 	public float explodingAngle = 90.0f;
 
 	public int scoreValue = 100;
+
+	public event EventHandler TargetDestroyed;
 
 	private enum STATUS
 	{
@@ -25,6 +28,14 @@ public class Target01 : MonoBehaviour
 		}
 	}
 
+	void Awake ()
+	{
+		// Events setup
+		TargetDestroyed += LevelControl.Instance.OnTargetDestroyed;
+		TargetDestroyed += ScoreControl.Instance.OnTargetDestroyed;
+		TargetDestroyed += UIControl.Instance.HandleTargetsChanged;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,7 +49,6 @@ public class Target01 : MonoBehaviour
 			float angle = Mathf.Abs (Quaternion.Angle (Quaternion.Euler (new Vector3 (0, 0, 0)), transform.rotation)); 
 			if (angle >= explodingAngle) {
 				Status = STATUS.EXPLODING;
-				GameObject.Find ("TransientGameControl").GetComponent<ScoreControl> ().Score += scoreValue;
 			}
 		}
 	}
@@ -62,5 +72,12 @@ public class Target01 : MonoBehaviour
 		gameObject.GetComponent<AudioSource> ().Play ();
 		// destroys the object
 		Destroy (gameObject, 1.2f); // this gives enough time to the sound to play
+		TargetDestroyed (this, null);
+	}
+
+	public int ScoreValue {
+		get {
+			return scoreValue;
+		}
 	}
 }
