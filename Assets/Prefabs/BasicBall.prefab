@@ -238,10 +238,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 127316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f33852331003f4db287b50ae6bf7a5, type: 3}
+  m_Script: {fileID: 11500000, guid: af103c5779860c84c83229c83cd67033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 2
 --- !u!135 &13505486
 SphereCollider:
   m_ObjectHideFlags: 1

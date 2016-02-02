@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11480624}
   - 114: {fileID: 11498756}
   - 114: {fileID: 11411236}
+  - 114: {fileID: 11489756}
   m_Layer: 0
   m_Name: TransientGameControl
   m_TagString: Untagged
@@ -53,6 +54,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6978711586ccfa349adefc34bff46f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11489756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4140e6554fafd4e94a2084ac1675fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11496236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +79,7 @@ MonoBehaviour:
   scoreLabel: {fileID: 0}
   levelLabel: {fileID: 0}
   ballsLabel: {fileID: 0}
+  targetsLabel: {fileID: 0}
 --- !u!114 &11498756
 MonoBehaviour:
   m_ObjectHideFlags: 1

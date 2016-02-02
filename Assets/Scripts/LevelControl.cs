@@ -86,6 +86,8 @@ public class LevelControl : MonoBehaviour
 
 	private int targets;
 
+	public event EventHandler TargetsChanged;
+
 	public event EventHandler TargetsFinished;
 
 	public void OnTargetDestroyed (object sender, EventArgs e)
@@ -102,6 +104,10 @@ public class LevelControl : MonoBehaviour
 		}
 		set {
 			targets = value;
+
+			//Fire the event - notifying all subscribers
+			if (TargetsChanged != null)
+				TargetsChanged (this, null);
 		}
 	}
 }

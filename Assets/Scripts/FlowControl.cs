@@ -37,23 +37,19 @@ public class FlowControl : MonoBehaviour
 
 	private LevelControl lc;
 
-	private UIControl uic;
-
 	public void Proceed ()
 	{
 		if (Status == STATUS.PLAYING) {
-			UIControl.Instance.Init ();
+			EventControl.Instance.InitEvents ();
 
-			LevelControl lc = LevelControl.Instance;
-			lc.BallsFinished += OnBallsFinished;
-			lc.TargetsFinished += OnTargetsFinished;
+			lc = LevelControl.Instance;
 			lc.Level = level;
-
 			// TODO lettura da XML
 			lc.Balls = 15; 
 			lc.Targets = 9;
 
-			ScoreControl.Instance.Score = 0;
+			sc = ScoreControl.Instance;
+			sc.Score = 0;
 		}
 	}
 
@@ -63,16 +59,14 @@ public class FlowControl : MonoBehaviour
 		Status = STATUS.PLAYING;
 	}
 
-	private void OnBallsFinished (object sender, EventArgs e)
+	public void OnBallsFinished (object sender, EventArgs e)
 	{
-		// FIXME load level failed screen
-		Status = STATUS.GAMEOVER;
+		Status = STATUS.LEVEL_FAILED;
 	}
 
-	private void OnTargetsFinished (object sender, EventArgs e)
+	public void OnTargetsFinished (object sender, EventArgs e)
 	{
-		// FIXME load level won screen
-		Status = STATUS.GAMEOVER;
+		Status = STATUS.LEVEL_WON;
 	}
 
 	// STATUS CHANGE CODE
@@ -85,8 +79,8 @@ public class FlowControl : MonoBehaviour
 		LEVEL_CHOICE,
 		PLAYING,
 		PAUSED,
-		LEVEL_RESULT,
-		GAMEOVER
+		LEVEL_WON,
+		LEVEL_FAILED
 	}
 
 	private STATUS Status {
@@ -99,9 +93,13 @@ public class FlowControl : MonoBehaviour
 				// TODO lettura da xml in base a level
 				SceneManager.LoadScene ("01");
 				break;
-			case STATUS.GAMEOVER:
+			case STATUS.LEVEL_WON:
 				level = 0;
-				SceneManager.LoadScene ("GameOver");
+				SceneManager.LoadScene ("LevelWon");
+				break;
+			case STATUS.LEVEL_FAILED:
+				level = 0;
+				SceneManager.LoadScene ("LevelFailed");
 				break;
 			}
 		}

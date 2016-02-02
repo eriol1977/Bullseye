@@ -29,13 +29,6 @@ public class UIControl : MonoBehaviour
 
 	public Text targetsLabel;
 
-	public void Init ()
-	{
-		ScoreControl.Instance.ScoreChanged += HandleScoreChanged;
-		LevelControl.Instance.LevelChanged += HandleLevelChanged;
-		LevelControl.Instance.BallsChanged += HandleBallsChanged;
-	}
-
 	public void HandleScoreChanged (object sender, EventArgs e)
 	{
 		UpdateScoreLabel ();

@@ -27,7 +27,7 @@ public class ScoreControl : MonoBehaviour
 	public void OnTargetDestroyed (object sender, EventArgs e)
 	{
 		// FIXME what if it's another kind of target? use interfaces!
-		Score += ((Target01)sender).ScoreValue;
+		Score += ((TargetBehavior)sender).ScoreValue;
 	}
 
 	private int score;
