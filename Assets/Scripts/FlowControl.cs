@@ -44,21 +44,34 @@ public class FlowControl : MonoBehaviour
 
 			lc = LevelControl.Instance;
 			lc.Level = level;
+
 			// TODO lettura da XML
-			lc.Balls = 15; 
-			lc.Targets = 9;
+			if (level == 1) {
+				lc.Balls = 15; 
+				lc.Targets = 9;
+			} else if (level == 2) {
+				lc.Balls = 12; 
+				lc.Targets = 9;
+			}
 
 			sc = ScoreControl.Instance;
 			sc.Score = 0;
 		}
 	}
 
-	public void OnStartGame ()
+	public void LoadLevel (int level)
 	{
-		// TODO dovrebbe mostrare la schermata di scelta livello
+		this.level = level;
 		Status = STATUS.PLAYING;
 	}
 
+	public void OnStartGame ()
+	{
+		Status = STATUS.LEVEL_CHOICE;
+	}
+
+	// FIXME the result is Failed if I use the last ball to hit the last target, even if I hit it, because
+	// the BallDestroyed comes first to LevelControl
 	public void OnBallsFinished (object sender, EventArgs e)
 	{
 		Status = STATUS.LEVEL_FAILED;
@@ -88,17 +101,20 @@ public class FlowControl : MonoBehaviour
 		set {
 			status = value;
 			switch (status) {
+			case STATUS.LEVEL_CHOICE:
+				SceneManager.LoadScene ("LevelChoice");
+				break;
 			case STATUS.PLAYING:
-				level++;
 				// TODO lettura da xml in base a level
-				SceneManager.LoadScene ("01");
+				if (level == 1)
+					SceneManager.LoadScene ("01");
+				else
+					SceneManager.LoadScene ("01");
 				break;
 			case STATUS.LEVEL_WON:
-				level = 0;
 				SceneManager.LoadScene ("LevelWon");
 				break;
 			case STATUS.LEVEL_FAILED:
-				level = 0;
 				SceneManager.LoadScene ("LevelFailed");
 				break;
 			}

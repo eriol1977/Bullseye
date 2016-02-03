@@ -12,9 +12,9 @@ GameObject:
   - 135: {fileID: 13505486}
   - 23: {fileID: 2338376}
   - 54: {fileID: 5404652}
-  - 114: {fileID: 11460004}
   - 82: {fileID: 8247354}
   - 82: {fileID: 8241442}
+  - 114: {fileID: 11473262}
   m_Layer: 0
   m_Name: BasicBall
   m_TagString: Ball
@@ -230,7 +230,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11460004
+--- !u!114 &11473262
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -238,9 +238,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 127316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af103c5779860c84c83229c83cd67033, type: 3}
+  m_Script: {fileID: 11500000, guid: 03a14af44b92a804a8fc8acdc10d723f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifespan: 4
 --- !u!135 &13505486
 SphereCollider:
   m_ObjectHideFlags: 1

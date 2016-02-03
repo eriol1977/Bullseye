@@ -32,9 +32,6 @@ public class TargetBehavior : MonoBehaviour
 	void Start ()
 	{
 		Status = STATUS.NORMAL;
-
-		// Events setup
-		EventControl.Instance.InitTargetEvents (this);
 	}
 	
 	// Update is called once per frame
@@ -50,8 +47,11 @@ public class TargetBehavior : MonoBehaviour
 
 	void OnCollisionEnter (Collision other)
 	{
-		if (Status == STATUS.NORMAL && (other.gameObject.tag == "Ball" || other.gameObject.tag == "Target"))
+		if (Status == STATUS.NORMAL && (other.gameObject.tag == "Ball" || other.gameObject.tag == "Target")) {
+			// Events setup (I put it here, because it caused random errors in Start method, maybe because of concurrency of many targets starting up at the same time...)
+			EventControl.Instance.InitTargetEvents (this);
 			Status = STATUS.HIT;
+		}
 	}
 
 	private void Explode ()
