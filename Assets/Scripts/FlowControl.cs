@@ -53,6 +53,10 @@ public class FlowControl : MonoBehaviour
 
 			sc = ScoreControl.Instance;
 			sc.Score = 0;
+
+			Cursor.visible = false;
+		} else {
+			Cursor.visible = true;
 		}
 	}
 
