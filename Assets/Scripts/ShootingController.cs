@@ -20,7 +20,7 @@ public class ShootingController : MonoBehaviour
 	void Update ()
 	{
 		Camera cam = Camera.main;
-		if (Input.GetButtonDown ("Fire1")) {
+		if (Input.GetButtonDown ("Fire1") && LevelControl.Instance.Balls > 0) {
 			GameObject ball = (GameObject)Instantiate (ballPrefab, cam.transform.position + cam.transform.forward + heightOffset, cam.transform.rotation);
 			ball.GetComponent <Rigidbody> ().AddForce ((cam.transform.forward * ballImpulse) + verticalImpulseOffset, ForceMode.Impulse);
 		}

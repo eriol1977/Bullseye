@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System;
 
+
 public class FlowControl : MonoBehaviour
 {
 	private int level;
@@ -28,6 +29,7 @@ public class FlowControl : MonoBehaviour
 			instance = this;
 			//Make game manager persistent
 			DontDestroyOnLoad (gameObject);
+
 			status = STATUS.START_SCREEN;
 			level = 0;
 		}
@@ -45,14 +47,9 @@ public class FlowControl : MonoBehaviour
 			lc = LevelControl.Instance;
 			lc.Level = level;
 
-			// TODO lettura da XML
-			if (level == 1) {
-				lc.Balls = 15; 
-				lc.Targets = 9;
-			} else if (level == 2) {
-				lc.Balls = 12; 
-				lc.Targets = 9;
-			}
+			Level lev = DataControl.Instance.GetLevel (level);
+			lc.Balls = lev.Balls; 
+			lc.Targets = lev.Targets;
 
 			sc = ScoreControl.Instance;
 			sc.Score = 0;
@@ -105,11 +102,7 @@ public class FlowControl : MonoBehaviour
 				SceneManager.LoadScene ("LevelChoice");
 				break;
 			case STATUS.PLAYING:
-				// TODO lettura da xml in base a level
-				if (level == 1)
-					SceneManager.LoadScene ("01");
-				else
-					SceneManager.LoadScene ("01");
+				SceneManager.LoadScene (DataControl.Instance.GetLevelScene (level));
 				break;
 			case STATUS.LEVEL_WON:
 				SceneManager.LoadScene ("LevelWon");

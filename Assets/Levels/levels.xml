@@ -1,0 +1,16 @@
+<Game>
+	<Levels>
+		<Level number="1" scene="01">
+			<Balls>15</Balls>
+			<Targets>9</Targets>
+		</Level>
+		<Level number="2" scene="01">
+			<Balls>12</Balls>
+			<Targets>9</Targets>
+		</Level>
+		<Level number="3" scene="01">
+			<Balls>10</Balls>
+			<Targets>9</Targets>
+		</Level>
+	</Levels>
+</Game>
