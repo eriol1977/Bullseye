@@ -3,18 +3,18 @@ using System.Collections;
 
 public class StartGame : MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start ()
+	public void Go ()
 	{
-	
+		FlowControl.Instance.OnStartGame ();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+	public void Reload ()
 	{
-		if (Input.GetKey (KeyCode.S)) {
-			FlowControl.Instance.OnStartGame ();
-		}
+		FlowControl.Instance.ReloadLevel ();
+	}
+
+	public void LoadNextLevel ()
+	{
+		FlowControl.Instance.LoadNextLevel ();
 	}
 }

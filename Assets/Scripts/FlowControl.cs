@@ -66,6 +66,17 @@ public class FlowControl : MonoBehaviour
 		Status = STATUS.PLAYING;
 	}
 
+	public void ReloadLevel ()
+	{
+		Status = STATUS.PLAYING;
+	}
+
+	public void LoadNextLevel ()
+	{
+		level++;
+		Status = STATUS.PLAYING;
+	}
+
 	public void OnStartGame ()
 	{
 		Status = STATUS.LEVEL_CHOICE;

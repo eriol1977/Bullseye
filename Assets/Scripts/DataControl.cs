@@ -4,7 +4,13 @@ using System.IO;
 
 public class DataControl : MonoBehaviour
 {
+	private readonly string LEVELS_FILENAME = "Levels/levels.xml";
+
+	private readonly string SAVEGAMES_FILENAME = "Levels/save_games.xml";
+
 	private Dictionary<int,Level> levels;
+
+	private Dictionary<string,Player> players;
 
 	public Level GetLevel (int number)
 	{
@@ -14,6 +20,16 @@ public class DataControl : MonoBehaviour
 	public string GetLevelScene (int number)
 	{
 		return levels [number].Scene;
+	}
+
+	public Player GetPlayer (string name)
+	{
+		return players [name];
+	}
+
+	public List<string> GetPlayerNames ()
+	{
+		return new List<string> (players.Keys);
 	}
 
 	// SINGLETON CODE
@@ -31,6 +47,7 @@ public class DataControl : MonoBehaviour
 		//Make this active and only instance (since it's already part of persistent game object, we don't have to repeat
 		//all the DontDestroyOnLoad part present in FlowControl)
 		instance = this;
-		levels = Levels.LoadDictionary (Path.Combine (Application.dataPath, "Levels/levels.xml"));
+		levels = Levels.LoadDictionary (Path.Combine (Application.dataPath, LEVELS_FILENAME));
+		players = Players.LoadDictionary (Path.Combine (Application.dataPath, SAVEGAMES_FILENAME));
 	}
 }

@@ -1,0 +1,10 @@
+<SaveGames>
+	<Players>
+		<Player name="Francesco" lastLevel="3">
+			<Scores>
+				<Score level="1" value="100"/>
+				<Score level="2" value="300"/>
+			</Scores>
+		</Player>
+	</Players>
+</SaveGames>
