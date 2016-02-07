@@ -22,6 +22,11 @@ public class DataControl : MonoBehaviour
 		return levels [number].Scene;
 	}
 
+	public int GetLastLevelNumber ()
+	{
+		return levels.Count;
+	}
+
 	public Player GetPlayer (string name)
 	{
 		return players [name];

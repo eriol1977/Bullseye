@@ -8,6 +8,12 @@ public class FlowControl : MonoBehaviour
 {
 	private int level;
 
+	public int Level {
+		get {
+			return level;
+		}
+	}
+
 	// SINGLETON CODE
 
 	private static FlowControl instance = null;
@@ -114,7 +120,7 @@ public class FlowControl : MonoBehaviour
 			status = value;
 			switch (status) {
 			case STATUS.LEVEL_CHOICE:
-				SceneManager.LoadScene ("LevelChoice");
+				SceneManager.LoadScene ("LevelChoice2");
 				break;
 			case STATUS.PLAYING:
 				SceneManager.LoadScene (DataControl.Instance.GetLevelScene (level));
