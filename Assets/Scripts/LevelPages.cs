@@ -98,8 +98,9 @@ class LevelPage
 	{
 		GameObject button;
 		Vector2 buttonCoords;
+		int index = 0;
 		for (int n = firstNumber; n < firstNumber + buttonCount; n++) {
-			buttonCoords = coords [n];
+			buttonCoords = coords [index];
 			button = GameObject.Instantiate (buttonPrefab);
 			button.transform.SetParent (container.transform, false);
 			button.GetComponentInChildren<Text> ().text = "" + (n + 1);
@@ -108,6 +109,7 @@ class LevelPage
 			button.GetComponent<RectTransform> ().anchoredPosition = buttonCoords;
 			button.SetActive (false);
 			buttons.Add (button);
+			index++;
 		}
 	}
 
