@@ -14,6 +14,17 @@ public class FlowControl : MonoBehaviour
 		}
 	}
 
+	private string player;
+
+	public string Player {
+		get {
+			return player;
+		}
+		set {
+			player = value;
+		}
+	}
+
 	// SINGLETON CODE
 
 	private static FlowControl instance = null;
@@ -104,7 +115,7 @@ public class FlowControl : MonoBehaviour
 
 	private STATUS status;
 
-	private enum STATUS
+	public enum STATUS
 	{
 		START_SCREEN,
 		LEVEL_CHOICE,
@@ -114,13 +125,13 @@ public class FlowControl : MonoBehaviour
 		LEVEL_FAILED
 	}
 
-	private STATUS Status {
+	public STATUS Status {
 		get { return status; }
 		set {
 			status = value;
 			switch (status) {
 			case STATUS.LEVEL_CHOICE:
-				SceneManager.LoadScene ("LevelChoice2");
+				SceneManager.LoadScene ("LevelChoice");
 				break;
 			case STATUS.PLAYING:
 				SceneManager.LoadScene (DataControl.Instance.GetLevelScene (level));
