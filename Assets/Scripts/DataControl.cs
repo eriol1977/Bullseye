@@ -37,6 +37,16 @@ public class DataControl : MonoBehaviour
 		return new List<string> (players.Keys);
 	}
 
+	public void CreatePlayer (string playerName)
+	{
+		// TODO
+	}
+
+	public void DeletePlayer (string playerName)
+	{
+		// TODO
+	}
+
 	// SINGLETON CODE
 
 	private static DataControl instance = null;
