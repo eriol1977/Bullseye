@@ -15,4 +15,12 @@ public class Scores
 				return s.Value;
 		return 0;
 	}
+
+	public void AddScore (int level, int value)
+	{
+		Score s = new Score ();
+		s.Level = level;
+		s.Value = value;
+		scores.Add (s);
+	}
 }

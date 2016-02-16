@@ -2,6 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System.Linq;
 
 [XmlRoot ("SaveGames")]
 public class Players
@@ -26,5 +27,19 @@ public class Players
 			dic.Add (p.Name, p);
 		}
 		return dic;
+	}
+
+	public void AddPlayer (string name)
+	{
+		Player p = new Player ();
+		p.Name = name;
+		p.LastLevel = 0;
+		players.Add (new Player ());
+	}
+
+	public void RemovePlayer (string name)
+	{
+		//TODO
+		//players.Remove (p => p.Name == name);
 	}
 }

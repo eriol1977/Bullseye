@@ -5,11 +5,14 @@ using System.Collections.Generic;
 public class StartGame : MonoBehaviour
 {
 	private GameObject modalPanel;
+	private GameObject newPlayerDialog;
+	private GameObject deletePlayerDialog;
+	private List<GameObject> playerButtons = new List<GameObject> (3);
+	private List<GameObject> deleteButtons = new List<GameObject> (3);
 
 	void Start ()
 	{
-		modalPanel = GameObject.Find ("ModalPanel");
-		modalPanel.SetActive (false);
+		StoreUIElements ();
 
 		if (FlowControl.Instance.Status == FlowControl.STATUS.START_SCREEN) {
 			LoadPlayerButtons ();
@@ -23,25 +26,43 @@ public class StartGame : MonoBehaviour
 		}
 	}
 
+	void StoreUIElements ()
+	{
+		modalPanel = GameObject.Find ("ModalPanel");
+		newPlayerDialog = GameObject.Find ("NewPlayerDialog");
+		deletePlayerDialog = GameObject.Find ("DeletePlayerDialog");
+		newPlayerDialog.SetActive (false);
+		deletePlayerDialog.SetActive (false);
+		modalPanel.SetActive (false);
+
+		string buttonName;
+		string deleteButtonName;
+		for (int i = 1; i <= 3; i++) {
+			buttonName = "Player" + i + "Button";
+			deleteButtonName = "Delete" + i + "Button";
+			playerButtons.Add (GameObject.Find (buttonName));
+			deleteButtons.Add (GameObject.Find (deleteButtonName));
+		}
+	}
+
 	void LoadPlayerButtons ()
 	{
 		List<string> playerNames = DataControl.Instance.GetPlayerNames ();
-		string buttonName;
-		string deleteButtonName;
 		GameObject button;
 		GameObject deleteButton;
+		string playerName;
 		for (int i = 0; i < 3; i++) {
-			buttonName = "Player" + (i + 1) + "Button";
-			deleteButtonName = "Delete" + (i + 1) + "Button";
-			button = GameObject.Find (buttonName);
-			deleteButton = GameObject.Find (deleteButtonName);
+			button = playerButtons [i];
+			deleteButton = deleteButtons [i];
 			if (i < playerNames.Count) {
-				button.GetComponentInChildren<Text> ().text = playerNames [i];
+				playerName = playerNames [i];
+				button.GetComponentInChildren<Text> ().text = playerName;
 				button.GetComponent<Button> ().onClick.AddListener (delegate () {
-					Go (buttonName); // FIXME
+					Go (playerName);
 				});
+				deleteButton.SetActive (true);
 				deleteButton.GetComponent<Button> ().onClick.AddListener (delegate () {
-					ShowDeleteConfirmationDialog (buttonName); // FIXME
+					ShowDeleteConfirmationDialog (playerName);
 				});
 			} else {
 				button.GetComponentInChildren<Text> ().text = "[New]";
@@ -67,25 +88,49 @@ public class StartGame : MonoBehaviour
 	public void ShowNewPlayerDialog ()
 	{
 		modalPanel.SetActive (true);
-		modalPanel.GetComponentInChildren<InputField> ().text = "";
+		newPlayerDialog.SetActive (true);
+		newPlayerDialog.GetComponentInChildren<InputField> ().text = "";
 	}
 
-	public void ShowDeleteConfirmationDialog ()
+	public void ShowDeleteConfirmationDialog (string playerName)
 	{
-		// TODO
+		modalPanel.SetActive (true);
+		deletePlayerDialog.SetActive (true);
+		deletePlayerDialog.transform.Find ("Confirm").gameObject.GetComponent<Button> ().onClick.AddListener (delegate {
+			ConfirmDeletePlayer (playerName);		
+		});
 	}
 
 	public void ConfirmNewPlayer ()
 	{
-		string playerName = modalPanel.GetComponentInChildren<InputField> ().text;
-		DataControl.Instance.CreatePlayer (playerName);
-		FlowControl.Instance.Player = playerName;
-		LoadPlayerButtons ();
-		modalPanel.SetActive (false);
+		string playerName = modalPanel.GetComponentInChildren<InputField> ().text.Trim ();
+		if (!playerName.Equals ("")) {
+			DataControl.Instance.CreatePlayer (playerName);
+			FlowControl.Instance.Player = playerName;
+			LoadPlayerButtons ();
+			newPlayerDialog.SetActive (false);
+			modalPanel.SetActive (false);
+		}
 	}
 
 	public void CancelNewPlayer ()
 	{
+		newPlayerDialog.SetActive (false);
+		modalPanel.SetActive (false);
+	}
+
+	public void ConfirmDeletePlayer (string playerName)
+	{
+		DataControl.Instance.DeletePlayer (playerName);
+		FlowControl.Instance.Player = "";
+		LoadPlayerButtons ();
+		deletePlayerDialog.SetActive (false);
+		modalPanel.SetActive (false);
+	}
+
+	public void CancelDeletePlayer ()
+	{
+		deletePlayerDialog.SetActive (false);
 		modalPanel.SetActive (false);
 	}
 

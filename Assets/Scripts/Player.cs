@@ -15,4 +15,9 @@ public class Player
 	{
 		return scores.GetScore (level);
 	}
+
+	public void AddScore (int level, int value)
+	{
+		scores.AddScore (level, value);
+	}
 }
