@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 public class Player
 {
@@ -9,15 +10,23 @@ public class Player
 	[XmlAttribute ("lastLevel")]
 	public int LastLevel;
 
-	public Scores scores;
+	[XmlArray ("Scores")]
+	[XmlArrayItem ("Score")]
+	public List<Score> scores = new List<Score> ();
 
 	public int GetScore (int level)
 	{
-		return scores.GetScore (level);
+		foreach (Score s in scores)
+			if (s.Level == level)
+				return s.Value;
+		return 0;
 	}
 
 	public void AddScore (int level, int value)
 	{
-		scores.AddScore (level, value);
+		Score s = new Score ();
+		s.Level = level;
+		s.Value = value;
+		scores.Add (s);
 	}
 }

@@ -11,6 +11,11 @@ public class Players
 	[XmlArrayItem ("Player")]
 	public List<Player> players = new List<Player> ();
 
+	public Players ()
+	{
+		// do nothing	
+	}
+
 	public static Players Load (string path)
 	{
 		var serializer = new XmlSerializer (typeof(Players));
@@ -29,17 +34,12 @@ public class Players
 		return dic;
 	}
 
-	public void AddPlayer (string name)
+	public void Save (string path)
 	{
-		Player p = new Player ();
-		p.Name = name;
-		p.LastLevel = 0;
-		players.Add (new Player ());
+		var serializer = new XmlSerializer (typeof(Players));
+		using (var stream = new FileStream (path, FileMode.Create)) {
+			serializer.Serialize (stream, this);
+		}
 	}
-
-	public void RemovePlayer (string name)
-	{
-		//TODO
-		//players.Remove (p => p.Name == name);
-	}
+		
 }

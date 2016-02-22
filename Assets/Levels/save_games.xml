@@ -1,10 +1,14 @@
-<SaveGames>
-	<Players>
-		<Player name="Francesco" lastLevel="3">
-			<Scores>
-				<Score level="1" value="100"/>
-				<Score level="2" value="300"/>
-			</Scores>
-		</Player>
-	</Players>
+<?xml version="1.0" encoding="Windows-1252"?>
+<SaveGames xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Players>
+    <Player name="Francesco" lastLevel="3">
+      <Scores>
+        <Score level="1" value="100" />
+        <Score level="2" value="300" />
+      </Scores>
+    </Player>
+    <Player name="Gianni" lastLevel="0">
+      <Scores />
+    </Player>
+  </Players>
 </SaveGames>

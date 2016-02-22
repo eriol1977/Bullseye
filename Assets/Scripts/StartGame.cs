@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 
 public class StartGame : MonoBehaviour
@@ -37,11 +38,14 @@ public class StartGame : MonoBehaviour
 
 		string buttonName;
 		string deleteButtonName;
+		GameObject delButton;
 		for (int i = 1; i <= 3; i++) {
 			buttonName = "Player" + i + "Button";
 			deleteButtonName = "Delete" + i + "Button";
 			playerButtons.Add (GameObject.Find (buttonName));
-			deleteButtons.Add (GameObject.Find (deleteButtonName));
+			delButton = GameObject.Find (deleteButtonName);
+			delButton.GetComponent<DeleteButton> ().PlayerDeleted += HandlePlayerDeleted;
+			deleteButtons.Add (delButton);
 		}
 	}
 
@@ -57,15 +61,15 @@ public class StartGame : MonoBehaviour
 			if (i < playerNames.Count) {
 				playerName = playerNames [i];
 				button.GetComponentInChildren<Text> ().text = playerName;
+				button.GetComponent<Button> ().onClick.RemoveAllListeners ();
 				button.GetComponent<Button> ().onClick.AddListener (delegate () {
 					Go (playerName);
 				});
 				deleteButton.SetActive (true);
-				deleteButton.GetComponent<Button> ().onClick.AddListener (delegate () {
-					ShowDeleteConfirmationDialog (playerName);
-				});
+				deleteButton.GetComponent<DeleteButton> ().PlayerName = playerName;
 			} else {
 				button.GetComponentInChildren<Text> ().text = "[New]";
+				button.GetComponent<Button> ().onClick.RemoveAllListeners ();
 				button.GetComponent<Button> ().onClick.AddListener (delegate () {
 					ShowNewPlayerDialog ();
 				});
@@ -90,6 +94,12 @@ public class StartGame : MonoBehaviour
 		modalPanel.SetActive (true);
 		newPlayerDialog.SetActive (true);
 		newPlayerDialog.GetComponentInChildren<InputField> ().text = "";
+	}
+
+	public void HandlePlayerDeleted (object sender, EventArgs e)
+	{
+		string playerName = ((DeleteButton)sender).PlayerName;
+		ShowDeleteConfirmationDialog (playerName);
 	}
 
 	public void ShowDeleteConfirmationDialog (string playerName)

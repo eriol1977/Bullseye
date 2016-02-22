@@ -1039,6 +1039,7 @@ GameObject:
   - 222: {fileID: 825946816}
   - 114: {fileID: 825946815}
   - 114: {fileID: 825946814}
+  - 114: {fileID: 825946817}
   m_Layer: 5
   m_Name: Delete3Button
   m_TagString: Untagged
@@ -1138,6 +1139,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 825946812}
+--- !u!114 &825946817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825946812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee71e5c917bdec46b1d71e530d758e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &879391312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1713,7 @@ GameObject:
   - 222: {fileID: 1032733336}
   - 114: {fileID: 1032733335}
   - 114: {fileID: 1032733334}
+  - 114: {fileID: 1032733337}
   m_Layer: 5
   m_Name: Delete2Button
   m_TagString: Untagged
@@ -1800,6 +1813,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1032733332}
+--- !u!114 &1032733337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1032733332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee71e5c917bdec46b1d71e530d758e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1042529800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,6 +2569,7 @@ GameObject:
   - 222: {fileID: 1732656554}
   - 114: {fileID: 1732656553}
   - 114: {fileID: 1732656552}
+  - 114: {fileID: 1732656555}
   m_Layer: 5
   m_Name: Delete1Button
   m_TagString: Untagged
@@ -2644,6 +2669,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1732656550}
+--- !u!114 &1732656555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1732656550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee71e5c917bdec46b1d71e530d758e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1748842879
 GameObject:
   m_ObjectHideFlags: 0

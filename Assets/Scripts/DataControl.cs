@@ -39,12 +39,24 @@ public class DataControl : MonoBehaviour
 
 	public void CreatePlayer (string playerName)
 	{
-		// TODO
+		Player p = new Player ();
+		p.Name = playerName;
+		p.LastLevel = 0;
+		players.Add (playerName, p);
+		SaveXML ();
 	}
 
 	public void DeletePlayer (string playerName)
 	{
-		// TODO
+		players.Remove (playerName);
+		SaveXML ();
+	}
+
+	void SaveXML ()
+	{
+		Players pls = new Players ();
+		pls.players.AddRange (players.Values);
+		pls.Save ("Assets/" + SAVEGAMES_FILENAME);
 	}
 
 	// SINGLETON CODE
