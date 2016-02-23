@@ -14,9 +14,9 @@ public class FlowControl : MonoBehaviour
 		}
 	}
 
-	private string player;
+	private Player player;
 
-	public string Player {
+	public Player Player {
 		get {
 			return player;
 		}
@@ -94,7 +94,7 @@ public class FlowControl : MonoBehaviour
 		Status = STATUS.PLAYING;
 	}
 
-	public void OnStartGame ()
+	public void ChooseLevel ()
 	{
 		Status = STATUS.LEVEL_CHOICE;
 	}

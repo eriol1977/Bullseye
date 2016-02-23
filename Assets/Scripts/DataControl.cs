@@ -41,7 +41,7 @@ public class DataControl : MonoBehaviour
 	{
 		Player p = new Player ();
 		p.Name = playerName;
-		p.LastLevel = 0;
+		p.LastLevel = 1;
 		players.Add (playerName, p);
 		SaveXML ();
 	}

@@ -14,17 +14,7 @@ public class StartGame : MonoBehaviour
 	void Start ()
 	{
 		StoreUIElements ();
-
-		if (FlowControl.Instance.Status == FlowControl.STATUS.START_SCREEN) {
-			LoadPlayerButtons ();
-		}
-
-		// disables Continue button if this is the last existing level
-		if (FlowControl.Instance.Level == DataControl.Instance.GetLastLevelNumber ()) {
-			GameObject btn = GameObject.Find ("ContinueButton");
-			if (btn)
-				btn.GetComponent<Button> ().interactable = false;
-		}
+		LoadPlayerButtons ();
 	}
 
 	void StoreUIElements ()
@@ -61,14 +51,15 @@ public class StartGame : MonoBehaviour
 			if (i < playerNames.Count) {
 				playerName = playerNames [i];
 				button.GetComponentInChildren<Text> ().text = playerName;
-				button.GetComponent<Button> ().onClick.RemoveAllListeners ();
-				button.GetComponent<Button> ().onClick.AddListener (delegate () {
-					Go (playerName);
-				});
+				button.AddComponent<PlayerButton> ();
+				button.GetComponent<PlayerButton> ().PlayerName = playerName;
+				button.GetComponent<PlayerButton> ().PlayerSelected += HandlePlayerSelected;
 				deleteButton.SetActive (true);
 				deleteButton.GetComponent<DeleteButton> ().PlayerName = playerName;
 			} else {
 				button.GetComponentInChildren<Text> ().text = "[New]";
+				if (button.GetComponent<PlayerButton> () != null)
+					Destroy (button.GetComponent<PlayerButton> ());
 				button.GetComponent<Button> ().onClick.RemoveAllListeners ();
 				button.GetComponent<Button> ().onClick.AddListener (delegate () {
 					ShowNewPlayerDialog ();
@@ -78,15 +69,16 @@ public class StartGame : MonoBehaviour
 		}
 	}
 
-	public void Go ()
+	public void HandlePlayerSelected (object sender, EventArgs e)
 	{
-		FlowControl.Instance.OnStartGame ();
+		string playerName = ((PlayerButton)sender).PlayerName;
+		Go (playerName);
 	}
 
 	public void Go (string playerName)
 	{
-		FlowControl.Instance.Player = playerName;
-		FlowControl.Instance.OnStartGame ();
+		FlowControl.Instance.Player = DataControl.Instance.GetPlayer (playerName);
+		FlowControl.Instance.ChooseLevel ();
 	}
 
 	public void ShowNewPlayerDialog ()
@@ -116,7 +108,6 @@ public class StartGame : MonoBehaviour
 		string playerName = modalPanel.GetComponentInChildren<InputField> ().text.Trim ();
 		if (!playerName.Equals ("")) {
 			DataControl.Instance.CreatePlayer (playerName);
-			FlowControl.Instance.Player = playerName;
 			LoadPlayerButtons ();
 			newPlayerDialog.SetActive (false);
 			modalPanel.SetActive (false);
@@ -132,7 +123,6 @@ public class StartGame : MonoBehaviour
 	public void ConfirmDeletePlayer (string playerName)
 	{
 		DataControl.Instance.DeletePlayer (playerName);
-		FlowControl.Instance.Player = "";
 		LoadPlayerButtons ();
 		deletePlayerDialog.SetActive (false);
 		modalPanel.SetActive (false);
@@ -142,21 +132,6 @@ public class StartGame : MonoBehaviour
 	{
 		deletePlayerDialog.SetActive (false);
 		modalPanel.SetActive (false);
-	}
-
-	public void Reload ()
-	{
-		FlowControl.Instance.ReloadLevel ();
-	}
-
-	public void LoadNextLevel ()
-	{
-		FlowControl.Instance.LoadNextLevel ();
-	}
-
-	public void Quit ()
-	{
-		Application.Quit ();
 	}
 		
 }

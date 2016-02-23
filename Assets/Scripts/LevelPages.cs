@@ -99,6 +99,8 @@ class LevelPage
 		GameObject button;
 		Vector2 buttonCoords;
 		int index = 0;
+		GameObject scorePanel;
+		int score;
 		for (int n = firstNumber; n < firstNumber + buttonCount; n++) {
 			buttonCoords = coords [index];
 			button = GameObject.Instantiate (buttonPrefab);
@@ -107,6 +109,9 @@ class LevelPage
 			button.GetComponentInChildren<LevelButtonBehavior> ().level = n + 1;
 			button.GetComponent<RectTransform> ().sizeDelta = buttonSize;
 			button.GetComponent<RectTransform> ().anchoredPosition = buttonCoords;
+			scorePanel = button.transform.FindChild ("ScorePanel").gameObject;
+			score = FlowControl.Instance.Player.GetScore (n + 1);
+			scorePanel.GetComponentInChildren<Text> ().text = score > 0 ? score.ToString () : "---";
 			button.SetActive (false);
 			buttons.Add (button);
 			index++;
@@ -115,8 +120,15 @@ class LevelPage
 
 	public void Show ()
 	{
+		int level = 1;
+		int lastLevel = FlowControl.Instance.Player.LastLevel;
 		foreach (GameObject button in buttons) {
 			button.SetActive (true);
+			if (level > lastLevel)
+				button.GetComponent<Button> ().interactable = false;
+			else
+				button.GetComponent<Button> ().interactable = true;
+			level++;
 		}
 	}
 
