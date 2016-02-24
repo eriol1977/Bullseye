@@ -46,6 +46,12 @@ public class DataControl : MonoBehaviour
 		SaveXML ();
 	}
 
+	public void SavePlayer (Player p)
+	{
+		players [p.Name] = p;
+		SaveXML ();
+	}
+
 	public void DeletePlayer (string playerName)
 	{
 		players.Remove (playerName);

@@ -7,8 +7,14 @@
         <Score level="2" value="300" />
       </Scores>
     </Player>
-    <Player name="Celene" lastLevel="1">
-      <Scores />
+    <Player name="Celene" lastLevel="6">
+      <Scores>
+        <Score level="1" value="100" />
+        <Score level="2" value="300" />
+        <Score level="3" value="300" />
+        <Score level="4" value="300" />
+        <Score level="5" value="600" />
+      </Scores>
     </Player>
   </Players>
 </SaveGames>

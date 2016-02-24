@@ -108,6 +108,18 @@ public class FlowControl : MonoBehaviour
 
 	public void OnTargetsFinished (object sender, EventArgs e)
 	{
+		System.Threading.Thread.Sleep (100);
+
+		var score = ScoreControl.Instance.Score;
+		var playerScore = Player.GetScore (level);
+		if (playerScore == 0)
+			Player.AddScore (level, score);
+		else if (score > playerScore)
+			Player.ReplaceScore (level, score);
+		if (level == Player.LastLevel)
+			Player.LastLevel++;
+		DataControl.Instance.SavePlayer (Player);
+
 		Status = STATUS.LEVEL_WON;
 	}
 

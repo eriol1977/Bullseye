@@ -40,8 +40,8 @@ public class EventControl : MonoBehaviour
 		lc.TargetsChanged += uic.HandleTargetsChanged;
 		sc.ScoreChanged += uic.HandleScoreChanged;
 
-		lc.BallsFinished += fc.OnBallsFinished;
 		lc.TargetsFinished += fc.OnTargetsFinished;
+		lc.BallsFinished += fc.OnBallsFinished;
 	}
 
 	public void InitBallEvents (BallBehavior ball)
@@ -52,8 +52,8 @@ public class EventControl : MonoBehaviour
 
 	public void InitTargetEvents (TargetBehavior target)
 	{
-		target.TargetDestroyed += lc.OnTargetDestroyed;
 		target.TargetDestroyed += sc.OnTargetDestroyed;
 		target.TargetDestroyed += uic.HandleTargetsChanged;
+		target.TargetDestroyed += lc.OnTargetDestroyed;
 	}
 }

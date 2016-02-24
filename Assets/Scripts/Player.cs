@@ -29,4 +29,14 @@ public class Player
 		s.Value = value;
 		scores.Add (s);
 	}
+
+	public void ReplaceScore (int level, int value)
+	{
+		foreach (Score s in scores) {
+			if (s.Level == level) {
+				s.Value = value;
+				break;
+			}
+		}
+	}
 }
