@@ -35,25 +35,65 @@ public class EventControl : MonoBehaviour
 		sc = ScoreControl.Instance;
 		uic = UIControl.Instance;
 
-		lc.LevelChanged += uic.HandleLevelChanged;
-		lc.BallsChanged += uic.HandleBallsChanged;
-		lc.TargetsChanged += uic.HandleTargetsChanged;
-		sc.ScoreChanged += uic.HandleScoreChanged;
-
-		lc.TargetsFinished += fc.OnTargetsFinished;
-		lc.BallsFinished += fc.OnBallsFinished;
+		lc.BallsChanged += OnBallsChanged;
+		lc.LevelChanged += OnLevelChanged;
+		lc.TargetsChanged += OnTargetsChanged;
+		sc.ScoreChanged += OnScoreChanged;
 	}
 
 	public void InitBallEvents (BallBehavior ball)
 	{
-		ball.BallThrown += lc.OnBallThrown;
-		ball.BallDestroyed += lc.OnBallDestroyed;
+		ball.BallThrown += OnBallThrown;
+		ball.BallDestroyed += OnBallDestroyed;
 	}
 
 	public void InitTargetEvents (TargetBehavior target)
 	{
-		target.TargetDestroyed += sc.OnTargetDestroyed;
-		target.TargetDestroyed += uic.HandleTargetsChanged;
-		target.TargetDestroyed += lc.OnTargetDestroyed;
+		target.TargetDestroyed += OnTargetDestroyed;
+	}
+
+	public void OnLevelChanged (object sender, EventArgs e)
+	{
+		uic.UpdateLevelLabel ();
+	}
+
+	public void OnBallThrown (object sender, EventArgs e)
+	{
+		lc.Balls--;
+		lc.CanShoot = false;
+	}
+
+	public void OnBallsChanged (object sender, EventArgs e)
+	{
+		uic.UpdateBallsLabel ();
+	}
+
+	public void OnBallDestroyed (object sender, EventArgs e)
+	{
+		if (lc.Balls == 0) {
+			fc.OnBallsFinished ();
+		} else {
+			lc.CanShoot = true;
+		}
+	}
+
+	public void OnTargetsChanged (object sender, EventArgs e)
+	{
+		uic.UpdateTargetsLabel ();
+	}
+
+	public void OnTargetDestroyed (object sender, EventArgs e)
+	{
+		sc.Score += ((TargetBehavior)sender).ScoreValue;
+		uic.UpdateTargetsLabel ();
+		lc.Targets--;
+		if (lc.Targets == 0) {
+			fc.OnTargetsFinished ();
+		}
+	}
+
+	public void OnScoreChanged (object sender, EventArgs e)
+	{
+		uic.UpdateScoreLabel ();
 	}
 }

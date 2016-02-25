@@ -101,15 +101,13 @@ public class FlowControl : MonoBehaviour
 
 	// FIXME the result is Failed if I use the last ball to hit the last target, even if I hit it, because
 	// the BallDestroyed comes first to LevelControl
-	public void OnBallsFinished (object sender, EventArgs e)
+	public void OnBallsFinished ()
 	{
 		Status = STATUS.LEVEL_FAILED;
 	}
 
-	public void OnTargetsFinished (object sender, EventArgs e)
+	public void OnTargetsFinished ()
 	{
-		System.Threading.Thread.Sleep (100);
-
 		var score = ScoreControl.Instance.Score;
 		var playerScore = Player.GetScore (level);
 		if (playerScore == 0)

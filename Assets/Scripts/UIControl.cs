@@ -29,45 +29,25 @@ public class UIControl : MonoBehaviour
 
 	public Text targetsLabel;
 
-	public void HandleScoreChanged (object sender, EventArgs e)
-	{
-		UpdateScoreLabel ();
-	}
-
-	public void HandleLevelChanged (object sender, EventArgs e)
-	{
-		UpdateLevelLabel ();
-	}
-
-	public void HandleBallsChanged (object sender, EventArgs e)
-	{
-		UpdateBallsLabel ();
-	}
-
-	public void HandleTargetsChanged (object sender, EventArgs e)
-	{
-		UpdateTargetsLabel ();
-	}
-
-	private void UpdateScoreLabel ()
+	public void UpdateScoreLabel ()
 	{
 		if (scoreLabel != null)
 			scoreLabel.text = ScoreControl.Instance.Score.ToString ();
 	}
 
-	private void UpdateLevelLabel ()
+	public void UpdateLevelLabel ()
 	{
 		if (levelLabel != null)
 			levelLabel.text = "Level " + LevelControl.Instance.Level.ToString ();
 	}
 
-	private void UpdateBallsLabel ()
+	public void UpdateBallsLabel ()
 	{
 		if (ballsLabel != null)
 			ballsLabel.text = "Balls: " + LevelControl.Instance.Balls.ToString ();
 	}
 
-	private void UpdateTargetsLabel ()
+	public void UpdateTargetsLabel ()
 	{
 		if (targetsLabel != null)
 			targetsLabel.text = "Targets: " + LevelControl.Instance.Targets.ToString ();

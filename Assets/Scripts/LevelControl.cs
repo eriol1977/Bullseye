@@ -46,24 +46,7 @@ public class LevelControl : MonoBehaviour
 
 	private int balls;
 
-	private int totBalls = -1;
-
 	public event EventHandler BallsChanged;
-
-	public event EventHandler BallsFinished;
-
-	public void OnBallThrown (object sender, EventArgs e)
-	{
-		Balls--;
-	}
-
-	public void OnBallDestroyed (object sender, EventArgs e)
-	{
-		totBalls--;
-		if (totBalls == 0) {
-			BallsFinished (this, null);
-		}
-	}
 
 	public int Balls {
 		get {
@@ -72,31 +55,19 @@ public class LevelControl : MonoBehaviour
 		set {
 			balls = value;
 
-			//Init balls' total
-			if (totBalls == -1)
-				totBalls = value;
-
 			//Fire the event - notifying all subscribers
 			if (BallsChanged != null)
 				BallsChanged (this, null);
 		}
 	}
 
+	public bool CanShoot = true;
+
 	// TARGETS CODE
 
 	private int targets;
 
 	public event EventHandler TargetsChanged;
-
-	public event EventHandler TargetsFinished;
-
-	public void OnTargetDestroyed (object sender, EventArgs e)
-	{
-		Targets--;
-		if (Targets == 0) {
-			TargetsFinished (this, null);
-		}
-	}
 
 	public int Targets { 
 		get {

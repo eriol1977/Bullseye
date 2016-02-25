@@ -46,9 +46,7 @@ public class BallBehavior : MonoBehaviour
 	void OnCollisionEnter (Collision other)
 	{
 		bounceSound.Play ();
-		if (other.gameObject.tag.Equals ("Target")) {
-			Destroy (gameObject, 1.0f);
-		}
+		Destroy (gameObject);
 	}
 
 	void OnDestroy ()
