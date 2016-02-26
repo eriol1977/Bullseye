@@ -28,6 +28,10 @@ public class EventControl : MonoBehaviour
 
 	private UIControl uic;
 
+	private Boolean levelWon = false;
+
+	private object lastTarget = null;
+
 	public void InitEvents ()
 	{
 		fc = FlowControl.Instance;
@@ -49,6 +53,7 @@ public class EventControl : MonoBehaviour
 
 	public void InitTargetEvents (TargetBehavior target)
 	{
+		target.TargetDown += OnTargetDown;
 		target.TargetDestroyed += OnTargetDestroyed;
 	}
 
@@ -59,8 +64,10 @@ public class EventControl : MonoBehaviour
 
 	public void OnBallThrown (object sender, EventArgs e)
 	{
-		lc.Balls--;
-		lc.CanShoot = false;
+		lc.BallsThrown++;
+		if (lc.BallsThrown == lc.BallsInitial)
+			lc.CanShoot = false;
+		uic.UpdateBallsLabel ();
 	}
 
 	public void OnBallsChanged (object sender, EventArgs e)
@@ -70,10 +77,12 @@ public class EventControl : MonoBehaviour
 
 	public void OnBallDestroyed (object sender, EventArgs e)
 	{
-		if (lc.Balls == 0) {
-			fc.OnBallsFinished ();
-		} else {
-			lc.CanShoot = true;
+		lc.BallsDestroyed++;
+		if (lc.BallsDestroyed == lc.BallsInitial) {
+			if (levelWon)
+				fc.OnTargetsFinished ();
+			else
+				fc.OnBallsFinished ();
 		}
 	}
 
@@ -82,14 +91,22 @@ public class EventControl : MonoBehaviour
 		uic.UpdateTargetsLabel ();
 	}
 
-	public void OnTargetDestroyed (object sender, EventArgs e)
+	public void OnTargetDown (object sender, EventArgs e)
 	{
 		sc.Score += ((TargetBehavior)sender).ScoreValue;
 		uic.UpdateTargetsLabel ();
 		lc.Targets--;
 		if (lc.Targets == 0) {
-			fc.OnTargetsFinished ();
+			levelWon = true;
+			lastTarget = sender;
+			lc.CanShoot = false;
 		}
+	}
+
+	public void OnTargetDestroyed (object sender, EventArgs e)
+	{
+		if (levelWon && (sender == lastTarget))
+			fc.OnTargetsFinished ();
 	}
 
 	public void OnScoreChanged (object sender, EventArgs e)

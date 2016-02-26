@@ -44,7 +44,7 @@ public class UIControl : MonoBehaviour
 	public void UpdateBallsLabel ()
 	{
 		if (ballsLabel != null)
-			ballsLabel.text = "Balls: " + LevelControl.Instance.Balls.ToString ();
+			ballsLabel.text = "Balls: " + (LevelControl.Instance.BallsInitial - LevelControl.Instance.BallsThrown).ToString ();
 	}
 
 	public void UpdateTargetsLabel ()

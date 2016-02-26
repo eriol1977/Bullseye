@@ -8,6 +8,8 @@ public class TargetBehavior : MonoBehaviour
 
 	public int scoreValue = 100;
 
+	public event EventHandler TargetDown;
+
 	public event EventHandler TargetDestroyed;
 
 	private enum STATUS
@@ -40,6 +42,8 @@ public class TargetBehavior : MonoBehaviour
 		if (Status == STATUS.HIT) {
 			float angle = Mathf.Abs (Quaternion.Angle (Quaternion.Euler (new Vector3 (0, 0, 0)), transform.rotation)); 
 			if (angle >= explodingAngle) {
+				if (TargetDown != null)
+					TargetDown (this, null);
 				Status = STATUS.EXPLODING;
 			}
 		}

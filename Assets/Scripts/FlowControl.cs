@@ -65,7 +65,7 @@ public class FlowControl : MonoBehaviour
 			lc.Level = level;
 
 			Level lev = DataControl.Instance.GetLevel (level);
-			lc.Balls = lev.Balls; 
+			lc.BallsInitial = lev.Balls; 
 			lc.Targets = lev.Targets;
 
 			sc = ScoreControl.Instance;

@@ -20,7 +20,7 @@ public class LevelControl : MonoBehaviour
 		//Make this active and only instance
 		instance = this;
 		level = 0;
-		balls = 0;
+		ballsInitial = 0;
 	}
 		
 	// LEVEL CODE
@@ -44,20 +44,44 @@ public class LevelControl : MonoBehaviour
 
 	// BALLS CODE
 
-	private int balls;
+	private int ballsInitial;
+
+	private int ballsThrown;
+
+	private int ballsDestroyed;
 
 	public event EventHandler BallsChanged;
 
-	public int Balls {
+	public int BallsInitial {
 		get {
-			return balls;
+			return ballsInitial;
 		}
 		set {
-			balls = value;
+			ballsInitial = value;
+			ballsThrown = 0;
+			ballsDestroyed = 0;
 
 			//Fire the event - notifying all subscribers
 			if (BallsChanged != null)
 				BallsChanged (this, null);
+		}
+	}
+
+	public int BallsThrown {
+		get {
+			return ballsThrown;
+		}
+		set {
+			ballsThrown = value;
+		}
+	}
+
+	public int BallsDestroyed {
+		get {
+			return ballsDestroyed;
+		}
+		set {
+			ballsDestroyed = value;
 		}
 	}
 
