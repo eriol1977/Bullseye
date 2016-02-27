@@ -51,7 +51,7 @@ public class EventControl : MonoBehaviour
 		ball.BallDestroyed += OnBallDestroyed;
 	}
 
-	public void InitTargetEvents (TargetBehavior target)
+	public void InitTargetEvents (AbstractTarget target)
 	{
 		target.TargetDown += OnTargetDown;
 		target.TargetDestroyed += OnTargetDestroyed;
@@ -93,19 +93,23 @@ public class EventControl : MonoBehaviour
 
 	public void OnTargetDown (object sender, EventArgs e)
 	{
-		sc.Score += ((TargetBehavior)sender).ScoreValue;
+		var t = (AbstractTarget)sender;
+		sc.Score += t.ScoreValue ();
 		uic.UpdateTargetsLabel ();
-		lc.Targets--;
-		if (lc.Targets == 0) {
-			levelWon = true;
-			lastTarget = sender;
-			lc.CanShoot = false;
+		if (t.IsMandatory ()) {
+			lc.Targets--;
+			if (lc.Targets == 0) {
+				levelWon = true;
+				lastTarget = sender;
+				lc.CanShoot = false;
+			}
 		}
 	}
 
 	public void OnTargetDestroyed (object sender, EventArgs e)
 	{
-		if (levelWon && (sender == lastTarget))
+		var t = (AbstractTarget)sender;
+		if (t.IsMandatory () && levelWon && (sender == lastTarget))
 			fc.OnTargetsFinished ();
 	}
 
