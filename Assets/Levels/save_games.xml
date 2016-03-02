@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <SaveGames xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Players>
-    <Player name="Francesco" lastLevel="8">
+    <Player name="Francesco" lastLevel="11">
       <Scores>
         <Score level="1" value="100" />
         <Score level="2" value="300" />
@@ -10,15 +10,23 @@
         <Score level="5" value="600" />
         <Score level="6" value="500" />
         <Score level="7" value="1300" />
+        <Score level="8" value="900" />
+        <Score level="9" value="900" />
+        <Score level="10" value="500" />
       </Scores>
     </Player>
-    <Player name="Celene" lastLevel="6">
+    <Player name="Celene" lastLevel="11">
       <Scores>
         <Score level="1" value="100" />
         <Score level="2" value="300" />
         <Score level="3" value="300" />
-        <Score level="4" value="300" />
+        <Score level="4" value="600" />
         <Score level="5" value="600" />
+        <Score level="6" value="500" />
+        <Score level="7" value="1300" />
+        <Score level="8" value="900" />
+        <Score level="9" value="900" />
+        <Score level="10" value="500" />
       </Scores>
     </Player>
   </Players>

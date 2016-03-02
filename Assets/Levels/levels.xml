@@ -36,5 +36,9 @@
 			<Balls>12</Balls>
 			<Targets>9</Targets>
 		</Level>
+		<Level number="10" scene="10">
+			<Balls>20</Balls>
+			<Targets>5</Targets>
+		</Level>
 	</Levels>
 </Game>
