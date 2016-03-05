@@ -8,9 +8,9 @@ public abstract class AbstractTarget : MonoBehaviour
 
 	public event EventHandler TargetDestroyed;
 
-	public abstract bool IsMandatory ();
+	public bool isMandatory;
 
-	public abstract int ScoreValue ();
+	public int scoreValue;
 
 	protected enum STATUS
 	{
@@ -76,5 +76,15 @@ public abstract class AbstractTarget : MonoBehaviour
 	void OnDestroy ()
 	{
 		OnTargetDestroyed (null);
+	}
+
+	public int ScoreValue ()
+	{
+		return scoreValue;
+	}
+
+	public bool IsMandatory ()
+	{
+		return isMandatory;
 	}
 }

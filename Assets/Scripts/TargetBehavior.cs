@@ -17,14 +17,4 @@ public class TargetBehavior : AbstractTarget
 			}
 		}
 	}
-
-	public override int ScoreValue ()
-	{
-		return 100;
-	}
-
-	public override bool IsMandatory ()
-	{
-		return true;
-	}
 }

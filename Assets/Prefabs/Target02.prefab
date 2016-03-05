@@ -17,7 +17,7 @@ GameObject:
   - 199: {fileID: 19932556}
   - 82: {fileID: 8241032}
   m_Layer: 0
-  m_Name: Target01
+  m_Name: Target02
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,9 +43,9 @@ MeshRenderer:
   m_GameObject: {fileID: 111942}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3ab68ccbe132ea8408fc126ba66ae6c8, type: 2}
+  - {fileID: 2100000, guid: 0fe1b2df234653942b873656950bf56c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMandatory: 1
-  scoreValue: 100
+  scoreValue: 200
   explodingAngle: 70
 --- !u!136 &13618722
 CapsuleCollider:
@@ -1850,7 +1850,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 77d08210df254d845885518314593544, type: 2}
+      objectReference: {fileID: 2100000, guid: 0fe1b2df234653942b873656950bf56c, type: 2}
     - target: {fileID: 0}
       propertyPath: startDelay.scalar
       value: 0
@@ -1889,7 +1889,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: isMandatory

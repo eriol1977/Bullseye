@@ -44,15 +44,4 @@ public class MovingTarget : AbstractTarget
 			Status = STATUS.HIT;
 		}
 	}
-
-	public override int ScoreValue ()
-	{
-		return 300;
-	}
-
-	public override bool IsMandatory ()
-	{
-		return false;
-	}
-
 }

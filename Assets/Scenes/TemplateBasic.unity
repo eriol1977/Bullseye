@@ -225,7 +225,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481956, guid: 1774e8e6c038eb545a38b62b32a39f53, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 481956, guid: 1774e8e6c038eb545a38b62b32a39f53, type: 2}
       propertyPath: m_LocalPosition.z
@@ -480,11 +480,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400264, guid: 65e4054a8fa97c0479c58ba10950e28f, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22448552, guid: 65e4054a8fa97c0479c58ba10950e28f, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65e4054a8fa97c0479c58ba10950e28f, type: 2}
