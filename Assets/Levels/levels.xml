@@ -1,10 +1,10 @@
 <Game>
 	<Levels>
-		<Level number="1" scene="01">
+		<Level number="1" scene="001">
 			<Balls>3</Balls>
 			<Targets>1</Targets>
 		</Level>
-		<Level number="2" scene="02">
+		<Level number="2" scene="002">
 			<Balls>7</Balls>
 			<Targets>3</Targets>
 		</Level>

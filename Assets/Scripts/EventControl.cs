@@ -28,6 +28,8 @@ public class EventControl : MonoBehaviour
 
 	private UIControl uic;
 
+	private ShootingController shootC;
+
 	private Boolean levelWon = false;
 
 	private object lastTarget = null;
@@ -38,11 +40,14 @@ public class EventControl : MonoBehaviour
 		lc = LevelControl.Instance;
 		sc = ScoreControl.Instance;
 		uic = UIControl.Instance;
+		shootC = GameObject.Find ("Player").GetComponent<ShootingController> ();
 
 		lc.BallsChanged += OnBallsChanged;
 		lc.LevelChanged += OnLevelChanged;
 		lc.TargetsChanged += OnTargetsChanged;
 		sc.ScoreChanged += OnScoreChanged;
+		shootC.InitPowerSlider += OnInitPowerSlider;
+		shootC.UpdatePowerSlider += OnUpdatePowerSlider;
 	}
 
 	public void InitBallEvents (BallBehavior ball)
@@ -116,5 +121,15 @@ public class EventControl : MonoBehaviour
 	public void OnScoreChanged (object sender, EventArgs e)
 	{
 		uic.UpdateScoreLabel ();
+	}
+
+	public void OnInitPowerSlider (float min, float max)
+	{
+		uic.InitPowerSlider (min, max);
+	}
+
+	public void OnUpdatePowerSlider (float value)
+	{
+		uic.UpdatePowerSlider (value);
 	}
 }
