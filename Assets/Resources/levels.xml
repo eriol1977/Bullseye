@@ -1,34 +1,34 @@
 <Game>
 	<Levels>
-		<Level number="1" scene="001">
+		<Level number="1" scene="001" kind="N">
 			<Balls>3</Balls>
 			<Targets>1</Targets>
 		</Level>
-		<Level number="2" scene="002">
+		<Level number="2" scene="002" kind="N">
 			<Balls>7</Balls>
 			<Targets>3</Targets>
 		</Level>
-		<Level number="3" scene="003">
+		<Level number="3" scene="003" kind="N">
 			<Balls>7</Balls>
 			<Targets>3</Targets>
 		</Level>
-		<Level number="4" scene="004">
+		<Level number="4" scene="004" kind="N">
 			<Balls>7</Balls>
 			<Targets>3</Targets>
 		</Level>
-		<Level number="5" scene="005">
+		<Level number="5" scene="005" kind="N">
 			<Balls>12</Balls>
 			<Targets>6</Targets>
 		</Level>
-		<Level number="6" scene="006">
+		<Level number="6" scene="006" kind="N">
 			<Balls>12</Balls>
 			<Targets>7</Targets>
 		</Level>
-		<Level number="7" scene="007">
+		<Level number="7" scene="007" kind="N">
 			<Balls>15</Balls>
 			<Targets>9</Targets>
 		</Level>
-		<Level number="8" scene="008">
+		<Level number="8" scene="008" kind="T">
 			<Balls>12</Balls>
 			<Targets>4</Targets>
 		</Level>

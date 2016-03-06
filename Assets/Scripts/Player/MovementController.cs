@@ -6,10 +6,10 @@ public class MovementController : MonoBehaviour
 	public float mouseSensitivity = 2.0f;
 
 	float rotLeftRight = 0;
-	public float leftRightRange = 60.0f;
+	private float leftRightRange = 179.0f;
 
 	float rotUpDown = 0;
-	public float upDownRange = 60.0f;
+	private float upDownRange = 60.0f;
 	
 	// Update is called once per frame
 	void Update ()

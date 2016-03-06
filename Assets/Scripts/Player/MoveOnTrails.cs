@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class MoveOnTrails : MonoBehaviour
@@ -26,8 +27,12 @@ public class MoveOnTrails : MonoBehaviour
 		bouncing = true;
 	}
 
+	public event EventHandler TrailsEndReached;
+
 	public void StopMotion ()
 	{
 		speed = 0;
+		if (TrailsEndReached != null)
+			TrailsEndReached (this, null);
 	}
 }

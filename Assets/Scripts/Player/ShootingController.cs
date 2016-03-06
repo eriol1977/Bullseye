@@ -19,7 +19,7 @@ public class ShootingController : MonoBehaviour
 	private Vector3 verticalImpulseOffset;
 
 	// factor applied to the ball impulse to determine a stronger vertical component
-	private readonly float verticalImpulseFactor = 1.5f;
+	private readonly float verticalImpulseFactor = 2f;
 
 	// so that the ball starts a little higher than the middle of the screen
 	private readonly Vector3 heightOffset = new Vector3 (0, 0.4f, 0);

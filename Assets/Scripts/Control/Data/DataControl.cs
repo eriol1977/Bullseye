@@ -4,9 +4,9 @@ using System.IO;
 
 public class DataControl : MonoBehaviour
 {
-	private readonly string LEVELS_FILENAME = "Levels/levels.xml";
+	private readonly string LEVELS_FILENAME = "Resources/levels.xml";
 
-	private readonly string SAVEGAMES_FILENAME = "Levels/save_games.xml";
+	private readonly string SAVEGAMES_FILENAME = "Resources/save_games.xml";
 
 	private Dictionary<int,Level> levels;
 

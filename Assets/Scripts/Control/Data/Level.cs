@@ -9,6 +9,9 @@ public class Level
 	[XmlAttribute ("scene")]
 	public string Scene;
 
+	[XmlAttribute ("kind")]
+	public string Kind;
+
 	public int Balls;
 
 	public int Targets;

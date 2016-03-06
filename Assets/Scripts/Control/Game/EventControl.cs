@@ -28,6 +28,8 @@ public class EventControl : MonoBehaviour
 
 	private UIControl uic;
 
+	private DataControl dc;
+
 	private ShootingController shootC;
 
 	private Boolean levelWon = false;
@@ -40,6 +42,7 @@ public class EventControl : MonoBehaviour
 		lc = LevelControl.Instance;
 		sc = ScoreControl.Instance;
 		uic = UIControl.Instance;
+		dc = DataControl.Instance;
 		shootC = GameObject.Find ("Player").GetComponent<ShootingController> ();
 
 		lc.BallsChanged += OnBallsChanged;
@@ -48,6 +51,10 @@ public class EventControl : MonoBehaviour
 		sc.ScoreChanged += OnScoreChanged;
 		shootC.InitPowerSlider += OnInitPowerSlider;
 		shootC.UpdatePowerSlider += OnUpdatePowerSlider;
+
+		string levelKind = dc.GetLevel (fc.Level).Kind;
+		if (levelKind.Equals ("T"))
+			GameObject.Find ("Player").GetComponent<MoveOnTrails> ().TrailsEndReached += OnTrailsEndReached;
 	}
 
 	public void InitBallEvents (BallBehavior ball)
@@ -131,5 +138,13 @@ public class EventControl : MonoBehaviour
 	public void OnUpdatePowerSlider (float value)
 	{
 		uic.UpdatePowerSlider (value);
+	}
+
+	public void OnTrailsEndReached (object sender, EventArgs e)
+	{
+		if (levelWon)
+			fc.OnTargetsFinished ();
+		else
+			fc.OnBallsFinished ();
 	}
 }
